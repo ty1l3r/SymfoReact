@@ -30,19 +30,19 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
 
 
-        for ($u=0; $u < 10; $u++ ) {
-            $user = New User();
+        for ($u = 0; $u < 10; $u++) {
+            $user = new User();
             $chrono = 1;
             $hash = $this->encoder->encodePassword($user, "password");
 
             $user->setFirstName($faker->firstName())
-                 ->setLastName($faker->lastName)
-                 ->setEmail($faker->email)
-                 ->setPassword($hash);
+                ->setLastName($faker->lastName)
+                ->setEmail($faker->email)
+                ->setPassword($hash);
 
             $manager->persist($user);
 
-            for ($c = 0; $c < mt_rand(5,20); $c++) {
+            for ($c = 0; $c < mt_rand(5, 20); $c++) {
                 $customer = new Customer();
                 $customer->setFirstName($faker->firstName())
                     ->setLastName($faker->lastName)
@@ -52,7 +52,7 @@ class AppFixtures extends Fixture
 
                 $manager->persist($customer);
 
-                for ($i = 0; $i < mt_rand(3,10); $i++) {
+                for ($i = 0; $i < mt_rand(3, 10); $i++) {
                     $invoice = new Invoice();
                     $invoice->setAmout($faker->randomFloat(2, 250, 5000))
                         ->setSentAt($faker->dateTimeBetween('-6 months'))
@@ -66,7 +66,6 @@ class AppFixtures extends Fixture
 
             }
         }
-
 
 
         $manager->flush();
