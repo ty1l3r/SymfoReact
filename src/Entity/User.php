@@ -15,7 +15,9 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @ApiResource
+ * @ApiResource(
+ *     normalizationContext={"groups"={"users_read"}}
+ *     )
  *  @UniqueEntity("email", message="Un utilisateur ayant cette adresse email existe déjà")
  */
 class User implements UserInterface
@@ -24,13 +26,13 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"customers_read", "invoices_read", "invoices_subresource"})
+     * @Groups({"customers_read", "invoices_read", "invoices_subresource", "users_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups({"customers_read","invoices_read", "invoices_subresource"})
+     * @Groups({"customers_read","invoices_read", "invoices_subresource", "users_read"})
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Email(message="Le format de l'adresse email doit être valide")
      */
@@ -50,7 +52,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_read","invoices_read", "invoices_subresource"})
+     * @Groups({"customers_read","invoices_read", "invoices_subresource", "users_read"})
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Length(min=3, minMessage="Le prénom doit faire 3 caractères",
      *                       maxMessage="Le prénom ne doit pas faire plus de 255 caractères")
@@ -59,7 +61,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"customers_read","invoices_read", "invoices_subresource"})
+     * @Groups({"customers_read","invoices_read", "invoices_subresource", "users_read"})
      * @Assert\NotBlank(message="Ce champ est obligatoire")
      * @Assert\Length(min=3, minMessage="Le om doit faire 3 caractères",
      *                       maxMessage="Le nom ne doit pas faire plus de 255 caractères")
