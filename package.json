@@ -15,8 +15,10 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "cors": "^2.8.5"
+        "axios": "^0.18.0",
+        "cors": "^2.8.5",
+        "react": "^16.8.6",
+        "react-dom": "^16.8.6",
+        "react-router-dom": "^5.0.0"
     }
 }
-
-
