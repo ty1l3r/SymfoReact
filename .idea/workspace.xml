@@ -9,21 +9,12 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
     </expand>
     <select>
       <path>
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="BRANCH:Pagination" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:Dev" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </select>
   </component>
@@ -354,7 +345,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="Pagination" />
+                        <option value="Dev" />
                       </list>
                     </value>
                   </entry>
