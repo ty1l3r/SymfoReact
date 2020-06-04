@@ -9,14 +9,20 @@
     "license": "UNLICENSED",
     "private": true,
     "scripts": {
-        "dev-server": "encore dev-server --port 8080 --https",
+        "dev-server": "encore dev-server --port 8080 ",
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
     },
     "dependencies": {
+        "@ant-design/icons": "^4.2.1",
+        "antd": "^4.0.1",
         "axios": "^0.18.0",
+        "cert": "^1.0.7",
         "cors": "^2.8.5",
+        "csstype": "^2.6.10",
+        "evergreen-ui": "^4.27.4",
+        "fuzzaldrin-plus": "^0.6.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^5.0.0"

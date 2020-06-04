@@ -1,3 +1,47 @@
 body {
     background-color: lightgray;
+    color: #0a0a0a;
+}
+.text{
+    color: black;
+    background-color: #353a40;
+}
+.mainSlider{
+    background-color: rgb(240, 242, 245);
+    background-position-x: 0%;
+    background-position-y: 0%;
+    background-repeat: repeat;
+    background-attachment: scroll;
+    background-image: none;
+    background-size: auto;
+    background-origin: padding-box;
+    background-clip: border-box;
+}
+.whiteBackground{
+    background-color: white !important;
+}
+.iconesAk{
+    text-align: center;
+    width: 37px;
+    height: 37px;
+}
+.rowTab{
+    height: 50px;
+}
+.adjustAK{
+    width: 3%;
+}
+
+.adjustAKCol2{
+    width: 9%;
+}
+.textAlign{
+    text-align: center;
+}
+.customer.invoices.length {
+    background-color: black !important;
+ }
+.adjustBadge{
+    width: 50px!important
+;
 }

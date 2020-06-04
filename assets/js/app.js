@@ -8,18 +8,47 @@
 // any CSS you import will output into a single css file (app.css in this case)
 
 import React from "react";
-
 import '../css/app.css';
+import '../css/Bootswatch.css'
 import ReactDOM from "react-dom";
+import Navbar from "./components/Navbar";
+import Homepage from "./pages/HomePage";
+import {HashRouter, Route, Switch} from "react-router-dom";
+import CustomerPage from "./pages/CustomerPage";
+import {Layout} from 'antd';
+import 'antd/dist/antd.css';
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
 
-console.log('Salut baby');
+const {Footer, Sider, Content} = Layout;
 
-    const App = () => {
-    return <h1> Bonjour Noob </h1>;
-    };
+const App = () => {
+    return (
+        <HashRouter>
+            <div className="whiteBackground">
+                <Navbar/>
+                <Layout>
+                    <Sider className="mainSlider"></Sider>
+                    <Layout>
+                        <Content className="container-fluid mt-5">
+                            <Switch>
+                                <Route path="/customers" component={CustomerPage}/>
+                                <Route path="/" component={Homepage}/>
+                            </Switch>
+                        </Content>
+                        <Footer>Footer</Footer>
+                    </Layout>
+                </Layout>
+            </div>
+        </HashRouter>
+    );
+};
+
+export default App;
 
 const rootElement = document.querySelector('#app');
-ReactDOM.render(<App />, rootElement);
+ReactDOM.render(<App/>, rootElement);
+
+
+
