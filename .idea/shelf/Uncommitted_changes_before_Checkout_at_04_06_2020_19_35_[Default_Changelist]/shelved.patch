@@ -1,0 +1,138 @@
+Index: assets/js/pages/CustomerPage.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useEffect, useState} from 'react';\nimport {Avatar, Dropdown, Menu, Pagination, Typography} from \"antd\";\nimport {UserOutlined} from '@ant-design/icons';\nimport 'antd/dist/antd.css';\nimport axios from \"axios\";\n\n/* Functions ======================================================*/\nfunction handleButtonClick(e) {\n    message.info('Click on left button.');\n    console.log('click left button', e);\n}\n\nfunction handleMenuClick(e) {\n    message.info('Click on menu item.');\n    console.log('click', e);\n}\n\n/* Antd Title =====================================================*/\nconst {Title} = Typography;\n\nconst CustomerPage = props => {\n    /* hook Use State pour modifier la variable et afficherle composant */\n    const [customers, setCustomers] = useState([]);\n    /* UseEffect /Axios ===============================================*/\n    useEffect(() => {\n        axios\n            .get(\"http://localhost:8000/api/customers\")\n            .then(response => response.data['hydra:member'])\n            .then(data => setCustomers(data))\n            .catch(error => console.log(error.response));\n    }, []);\n/* Fonction DELETE ===============================================*/\n    const handleDelete = id => {\n        /*Copie des costumers en cas d'échec */\n        const originalCustomers = [...customers];\n        //1 L'approche optimiste\n        setCustomers(customers.filter(customer => customer.id !== id));\n        //2 L'approche pessimiste\n        axios\n            .delete('http://localhost:8000/api/customers/' + id )\n            .then(response => console.log(\"ok\"))\n            .catch(error => {\n                setCustomers(originalCustomers);\n                console.log(error.response);\n            });\n    };\n\n    // Pagination\n    const itemsPerPage = 10;\n    const pageCount = Math.ceil(customers.length / itemsPerPage);\n    const pages = props =[];\n    for (let i = 1; i <= pageCount; i++) {\n        pages.push(i);\n    }\n    console.log(pages);\n    const nbPage = pages.length;\n\n\n\n/* RETURN ========================================================*/\n    return (\n        <>\n            <Title>Clients</Title>\n            <table className=\"table table-hover\">\n                <thead>\n                <tr>\n                    <th className=\"adjustAK\">Id</th>\n                    <th className=\"iconesAk adjustAKCol2\">\n                        Avatar\n                    </th>\n                    <th>Client</th>\n                    <th>Email</th>\n                    <th>Entreprises</th>\n                    <th>Factures</th>\n                    <th>Montant total</th>\n                    <th>Action</th>\n                </tr>\n                </thead>\n                <tbody>\n                {customers.map(customer => (\n                    <tr key={customer.id}>\n                        <td className=\"align-middle\"> {customer.id} </td>\n                        <td className=\"iconesAk align-middle\">\n                            <Avatar\n                                className=\"iconesAk align-middle\"\n                                src=\"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png\"\n                            />\n                        </td>\n                        <td className=\"align-middle\">{customer.firstName} {customer.lastName}</td>\n                        <td className=\"align-middle\">{customer.email}</td>\n                        <td className=\"align-middle\">{customer.company}</td>\n                        <td className=\"align-middle\">\n                            <span className=\"badge badge-pill badge-primary adjustBadge\">{customer.invoices.length}</span>\n                        </td>\n                        <td className=\"align-middle site-badge-count-4\">\n                            {customer.totalAmout.toLocaleString()} €\n                        </td>\n                        <td>\n                            {/*=== DropDown===*/}\n\n                            <Dropdown.Button\n                                onClick={handleButtonClick}\n                                overlay={\n                                    <Menu onClick={handleMenuClick}>\n                                        <Menu.Item key=\"1\" icon={<UserOutlined/>}>\n                                            Détails\n                                        </Menu.Item>\n                                        <Menu.Item\n                                            key=\"2\"\n                                            icon={<UserOutlined/>}>\n                                            Modifier\n                                        </Menu.Item>\n                                        <Menu.Item key=\"3\"\n                                                   onClick={ () => handleDelete(customer.id) }\n                                                   disabled={customer.invoices.length > 0}\n                                                   icon={<UserOutlined/>}>\n                                            Supprimer\n                                        </Menu.Item>\n                                    </Menu>\n                                }>\n                                Actions\n                            </Dropdown.Button>\n                        </td>\n                    </tr>\n                ))}\n                </tbody>\n            </table>\n            {/*PAGINATION PROBLEM*/}\n            <Pagination defaultCurrent={1}\n\n            />\n        </>\n    );\n};\n\n\nexport default CustomerPage;\n\n\n\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- assets/js/pages/CustomerPage.jsx	(revision 4093004ed98adcedde92da422986f9c6e7eaee37)
++++ assets/js/pages/CustomerPage.jsx	(date 1591292101070)
+@@ -1,5 +1,5 @@
+ import React, {useEffect, useState} from 'react';
+-import {Avatar, Dropdown, Menu, Pagination, Typography} from "antd";
++import {Avatar, Dropdown, Menu, Typography} from "antd";
+ import {UserOutlined} from '@ant-design/icons';
+ import 'antd/dist/antd.css';
+ import axios from "axios";
+@@ -21,6 +21,8 @@
+ const CustomerPage = props => {
+     /* hook Use State pour modifier la variable et afficherle composant */
+     const [customers, setCustomers] = useState([]);
++    /* Création STATES pour la pagination =============================*/
++    const [currentPage, setCurrentPage] = useState(1);
+     /* UseEffect /Axios ===============================================*/
+     useEffect(() => {
+         axios
+@@ -29,7 +31,7 @@
+             .then(data => setCustomers(data))
+             .catch(error => console.log(error.response));
+     }, []);
+-/* Fonction DELETE ===============================================*/
++    /* Fonction DELETE ===============================================*/
+     const handleDelete = id => {
+         /*Copie des costumers en cas d'échec */
+         const originalCustomers = [...customers];
+@@ -37,7 +39,7 @@
+         setCustomers(customers.filter(customer => customer.id !== id));
+         //2 L'approche pessimiste
+         axios
+-            .delete('http://localhost:8000/api/customers/' + id )
++            .delete('http://localhost:8000/api/customers/' + id)
+             .then(response => console.log("ok"))
+             .catch(error => {
+                 setCustomers(originalCustomers);
+@@ -46,18 +48,24 @@
+     };
+ 
+     // Pagination
++
++    const handlePageChange = page => {
++        setCurrentPage(page);
++    };
++
+     const itemsPerPage = 10;
+     const pageCount = Math.ceil(customers.length / itemsPerPage);
+-    const pages = props =[];
++    const pages = props = [];
+     for (let i = 1; i <= pageCount; i++) {
+         pages.push(i);
+     }
+-    console.log(pages);
+-    const nbPage = pages.length;
+ 
++    // d'où ou part (start) pendant combien (itemsPerPage)
++    const start = currentPage * itemsPerPage - itemsPerPage;
++    const paginateCustomers = customers.slice(start, start + itemsPerPage);
+ 
+ 
+-/* RETURN ========================================================*/
++    /* RETURN ========================================================*/
+     return (
+         <>
+             <Title>Clients</Title>
+@@ -77,7 +85,7 @@
+                 </tr>
+                 </thead>
+                 <tbody>
+-                {customers.map(customer => (
++                {paginateCustomers.map(customer => (
+                     <tr key={customer.id}>
+                         <td className="align-middle"> {customer.id} </td>
+                         <td className="iconesAk align-middle">
+@@ -90,7 +98,8 @@
+                         <td className="align-middle">{customer.email}</td>
+                         <td className="align-middle">{customer.company}</td>
+                         <td className="align-middle">
+-                            <span className="badge badge-pill badge-primary adjustBadge">{customer.invoices.length}</span>
++                            <span
++                                className="badge badge-pill badge-primary adjustBadge">{customer.invoices.length}</span>
+                         </td>
+                         <td className="align-middle site-badge-count-4">
+                             {customer.totalAmout.toLocaleString()} €
+@@ -111,7 +120,7 @@
+                                             Modifier
+                                         </Menu.Item>
+                                         <Menu.Item key="3"
+-                                                   onClick={ () => handleDelete(customer.id) }
++                                                   onClick={() => handleDelete(customer.id)}
+                                                    disabled={customer.invoices.length > 0}
+                                                    icon={<UserOutlined/>}>
+                                             Supprimer
+@@ -125,10 +134,33 @@
+                 ))}
+                 </tbody>
+             </table>
+-            {/*PAGINATION PROBLEM*/}
+-            <Pagination defaultCurrent={1}
+-
+-            />
++            {/*Pagination*/}
++            <div>
++                <ul className="pagination pagination-sm">
++                    <li className={"page-item" + (currentPage === 1 && " disabled")}>
++                        <button className="page-link"
++                                onClick={() => handlePageChange(currentPage - 1)}
++                        >
++                            &laquo;
++                        </button>
++                    </li>
++                    {pages.map(page => (
++                        <li key={page}
++                            className={"page-item" + (currentPage === page && " active")}>
++                            <button className="page-link"
++                                    onClick={() => handlePageChange(page)}
++                            >
++                                {page}
++                            </button>
++                        </li>
++                    ))}
++                    <li className={"page-item" + (currentPage === pageCount && " disabled")}>
++                        <button className="page-link"
++                                onClick={() => handlePageChange(currentPage + 1)}
++                        >&raquo;</button>
++                    </li>
++                </ul>
++            </div>
+         </>
+     );
+ };
