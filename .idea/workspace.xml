@@ -9,6 +9,15 @@
         <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
         <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
       </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
     </expand>
     <select>
       <path>
@@ -19,7 +28,19 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c08e73e0-02ff-4db0-85cc-c6188b308d1a" name="Default Changelist" comment="Pagination Ant DESIGN DEBUG" />
+    <list default="true" id="c08e73e0-02ff-4db0-85cc-c6188b308d1a" name="Default Changelist" comment="Fusion Pagination">
+      <change afterPath="$PROJECT_DIR$/assets/js/components/Pagination.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/pages/InvoicesPage.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/service/CustomersAPI.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/service/invoicesAPI.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/tyler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/tyler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/pages/CustomerPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/pages/CustomerPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Invoice.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Invoice.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,13 +54,14 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Dev" />
+        <entry key="$PROJECT_DIR$" value="Pagination" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -179,6 +201,7 @@
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="ToolWindowCommit.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -186,7 +209,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="DEFAULT" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
+    <property name="settings.editor.selected.configurable" value="preferences.externalTools" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RunManager">
@@ -195,6 +218,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="PHP Script.PasswordEncoderSubscription.php" />
         <item itemvalue="PHP Script.PasswordEncoderSubscription.php" />
         <item itemvalue="PHP Script.PasswordEncoderSubscription.php" />
         <item itemvalue="PHP Script.PasswordEncoderSubscription.php" />
@@ -232,6 +256,11 @@
       <workItem from="1591111257686" duration="11310000" />
       <workItem from="1591202306206" duration="23415000" />
       <workItem from="1591291249166" duration="1216000" />
+      <workItem from="1591293674149" duration="76000" />
+      <workItem from="1591385524664" duration="605000" />
+      <workItem from="1591539297733" duration="351000" />
+      <workItem from="1591544252360" duration="18762000" />
+      <workItem from="1591614805837" duration="2544000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1590007926428</created>
@@ -303,7 +332,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591284439288</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Fusion Pagination">
+      <created>1591293225318</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1591293225318</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -392,16 +428,18 @@
     <MESSAGE value="Avant installation REACT. [Cors Problème OK]." />
     <MESSAGE value="Avant installation Nebular TEST" />
     <MESSAGE value="Pagination Ant DESIGN DEBUG" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pagination Ant DESIGN DEBUG" />
+    <MESSAGE value="Fusion Pagination" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fusion Pagination" />
   </component>
   <component name="WindowStateProjectService">
     <state x="4519" y="57" key="#Composer" timestamp="1589832561911">
       <screen x="3600" y="-518" width="3440" height="1350" />
     </state>
     <state x="4519" y="57" key="#Composer/0.23.1680.1027/1680.-295.1920.1057/3600.-518.3440.1350@3600.-518.3440.1350" timestamp="1589832561911" />
-    <state x="4173" y="-124" key="#Inspections" timestamp="1591109422912">
-      <screen x="3600" y="-518" width="3440" height="1417" />
+    <state x="3933" y="417" key="#Inspections" timestamp="1591600728979">
+      <screen x="3360" y="23" width="3440" height="1417" />
     </state>
+    <state x="3933" y="417" key="#Inspections/0.23.1440.815/3360.23.3440.1417/1440.23.1920.1057@3360.23.3440.1417" timestamp="1591600728979" />
     <state x="4173" y="-124" key="#Inspections/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590872175256" />
     <state x="4173" y="-124" key="#Inspections/0.23.1680.961/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590875577193" />
     <state x="4173" y="-124" key="#Inspections/0.23.1680.962/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591109422912" />
@@ -449,6 +487,10 @@
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
     <state x="4272" y="-457" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1680.962/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590859637173" />
+    <state x="4584" y="712" key="#com.intellij.tools.ToolEditorDialog" timestamp="1591551857900">
+      <screen x="3360" y="23" width="3440" height="1417" />
+    </state>
+    <state x="4584" y="712" key="#com.intellij.tools.ToolEditorDialog/0.23.1440.817/3360.23.3440.1417/1440.23.1920.1057@3360.23.3440.1417" timestamp="1591551857900" />
     <state x="4277" y="-48" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1590872588871">
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
@@ -510,20 +552,21 @@
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
     <state x="4536" y="-102" width="597" height="581" key="RollbackChangesDialog/0.23.1680.960/3600.-518.3440.1417/1680.-295.1920.1057@3600.-518.3440.1417" timestamp="1590007011461" />
-    <state x="4355" y="-27" width="1404" height="722" key="SettingsEditor" timestamp="1591278468043">
-      <screen x="3600" y="-518" width="3440" height="1417" />
+    <state x="4115" y="514" width="1404" height="722" key="SettingsEditor" timestamp="1591551859407">
+      <screen x="3360" y="23" width="3440" height="1417" />
     </state>
+    <state x="4115" y="514" key="SettingsEditor/0.23.1440.817/3360.23.3440.1417/1440.23.1920.1057@3360.23.3440.1417" timestamp="1591551859407" />
     <state x="4227" y="-204" key="SettingsEditor/0.23.1680.1027/1680.-295.1920.1057/3600.-518.3440.1350@3600.-518.3440.1350" timestamp="1589832540150" />
     <state x="4355" y="-27" key="SettingsEditor/0.23.1680.1027/1680.-295.1920.990/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591278468043" />
     <state x="3888" y="-172" key="SettingsEditor/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591100064032" />
     <state x="3888" y="-172" width="1276" height="722" key="SettingsEditor/0.23.1680.960/3600.-518.3440.1417/1680.-295.1920.1057@3600.-518.3440.1417" timestamp="1590073438561" />
     <state x="3888" y="-172" key="SettingsEditor/0.23.1680.962/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591110542248" />
     <state x="3888" y="-172" width="1404" height="722" key="SettingsEditor/0.23.1680.964/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591050184897" />
-    <state x="4380" y="-71" width="1261" height="546" key="Vcs.Push.Dialog.v2" timestamp="1591284442354">
+    <state x="4380" y="-71" width="1261" height="546" key="Vcs.Push.Dialog.v2" timestamp="1591293227571">
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
     <state x="4380" y="-71" key="Vcs.Push.Dialog.v2/0.23.1680.1027/1680.-295.1920.990/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591284442354" />
-    <state x="4380" y="-71" key="Vcs.Push.Dialog.v2/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590879820030" />
+    <state x="4380" y="-71" key="Vcs.Push.Dialog.v2/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591293227571" />
     <state x="4380" y="-71" width="1261" height="546" key="Vcs.Push.Dialog.v2/0.23.1680.960/3600.-518.3440.1417/1680.-295.1920.1057@3600.-518.3440.1417" timestamp="1590587450264" />
     <state x="4380" y="-71" key="Vcs.Push.Dialog.v2/0.23.1680.964/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591018688374" />
     <state x="4376" y="-75" key="VcsDiffUtil.ChangesDialog" timestamp="1590008074299">
@@ -538,18 +581,19 @@
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
     <state x="4481" y="-102" width="598" height="582" key="find.popup/0.23.1680.960/3600.-518.3440.1417/1680.-295.1920.1057@3600.-518.3440.1417" timestamp="1590004215850" />
-    <state x="4464" y="-90" width="954" height="702" key="git4idea.branch.GitSmartOperationDialog" timestamp="1591292142725">
+    <state x="4464" y="-90" width="954" height="702" key="git4idea.branch.GitSmartOperationDialog" timestamp="1591293478702">
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
-    <state x="4464" y="-90" width="954" height="702" key="git4idea.branch.GitSmartOperationDialog/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591292142725" />
+    <state x="4464" y="-90" width="954" height="702" key="git4idea.branch.GitSmartOperationDialog/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591293478702" />
     <state x="4407" y="-12" key="refactoring.ChangeSignatureDialog" timestamp="1590873588361">
       <screen x="3600" y="-518" width="3440" height="1417" />
     </state>
     <state x="4407" y="-12" key="refactoring.ChangeSignatureDialog/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590873588361" />
     <state x="4407" y="-12" key="refactoring.ChangeSignatureDialog/0.23.1680.962/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1590860458529" />
-    <state x="5288" y="-301" width="1039" height="676" key="search.everywhere.popup" timestamp="1591265146973">
-      <screen x="3600" y="-518" width="3440" height="1417" />
+    <state x="5048" y="240" width="1039" height="676" key="search.everywhere.popup" timestamp="1591601808969">
+      <screen x="3360" y="23" width="3440" height="1417" />
     </state>
+    <state x="5048" y="240" width="1039" height="676" key="search.everywhere.popup/0.23.1440.817/3360.23.3440.1417/1440.23.1920.1057@3360.23.3440.1417" timestamp="1591601808969" />
     <state x="4445" y="-206" width="670" height="645" key="search.everywhere.popup/0.23.1680.1027/1680.-295.1920.1057/3600.-518.3440.1350@3600.-518.3440.1350" timestamp="1590962897026" />
     <state x="5288" y="-301" width="1039" height="676" key="search.everywhere.popup/0.23.1680.1027/1680.-295.1920.990/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591265146973" />
     <state x="4076" y="-191" width="1039" height="676" key="search.everywhere.popup/0.23.1680.960/1680.-295.1920.1057/3600.-518.3440.1417@3600.-518.3440.1417" timestamp="1591204100990" />

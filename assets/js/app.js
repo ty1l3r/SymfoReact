@@ -17,6 +17,8 @@ import {HashRouter, Route, Switch} from "react-router-dom";
 import CustomerPage from "./pages/CustomerPage";
 import {Layout} from 'antd';
 import 'antd/dist/antd.css';
+import InvoicesPage from "./pages/InvoicesPage";
+
 
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 // import $ from 'jquery';
@@ -33,6 +35,7 @@ const App = () => {
                     <Layout>
                         <Content className="container-fluid mt-5">
                             <Switch>
+                                <Route path="/invoices" component={InvoicesPage}/>
                                 <Route path="/customers" component={CustomerPage}/>
                                 <Route path="/" component={Homepage}/>
                             </Switch>

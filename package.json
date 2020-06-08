@@ -23,6 +23,7 @@
         "csstype": "^2.6.10",
         "evergreen-ui": "^4.27.4",
         "fuzzaldrin-plus": "^0.6.0",
+        "moment": "^2.26.0",
         "react": "^16.8.6",
         "react-dom": "^16.8.6",
         "react-router-dom": "^5.0.0"

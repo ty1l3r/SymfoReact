@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {Avatar, Dropdown, Menu, Pagination, Typography} from "antd";
+import {Avatar, Dropdown, Menu, Typography} from "antd";
 import {UserOutlined} from '@ant-design/icons';
 import 'antd/dist/antd.css';
-import axios from "axios";
+import Pagination from "../components/Pagination";
+import CustomersAPI from "../service/customersAPI"
 
-/* Functions ======================================================*/
+/* Functions ==========================================================*/
 function handleButtonClick(e) {
     message.info('Click on left button.');
     console.log('click left button', e);
@@ -15,52 +16,81 @@ function handleMenuClick(e) {
     console.log('click', e);
 }
 
-/* Antd Title =====================================================*/
+/* Antd Title =========================================================*/
 const {Title} = Typography;
 
 const CustomerPage = props => {
     /* hook Use State pour modifier la variable et afficherle composant */
     const [customers, setCustomers] = useState([]);
-    /* UseEffect /Axios ===============================================*/
+    /* Création STATES pour la pagination ===============================*/
+    const [currentPage, setCurrentPage] = useState(1);
+    /* Search Box */
+    const [search, setSearch] = useState("");
+
+// Permet d'aller récupérer les customers
+    const fetchCustomers = async () => {
+        try {
+            const data = await CustomersAPI.findAll()
+            setCustomers(data);
+        } catch (error) {
+            console.log(error.response);
+        }
+    }
+
+// Au chargement du composant on va chercher les composants.
     useEffect(() => {
-        axios
-            .get("http://localhost:8000/api/customers")
-            .then(response => response.data['hydra:member'])
-            .then(data => setCustomers(data))
-            .catch(error => console.log(error.response));
+        fetchCustomers();
     }, []);
-/* Fonction DELETE ===============================================*/
-    const handleDelete = id => {
+
+// FONCTION DELETE =====================================================
+    const handleDelete = async id => {
         /*Copie des costumers en cas d'échec */
         const originalCustomers = [...customers];
         //1 L'approche optimiste
         setCustomers(customers.filter(customer => customer.id !== id));
-        //2 L'approche pessimiste
-        axios
-            .delete('http://localhost:8000/api/customers/' + id )
-            .then(response => console.log("ok"))
-            .catch(error => {
-                setCustomers(originalCustomers);
-                console.log(error.response);
-            });
+        try {
+            await CustomersAPI.delete(id)
+        } catch (error) {
+            setCustomers(originalCustomers);
+        }
     };
 
-    // Pagination
-    const itemsPerPage = 10;
-    const pageCount = Math.ceil(customers.length / itemsPerPage);
-    const pages = props =[];
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i);
-    }
-    console.log(pages);
-    const nbPage = pages.length;
+// Gestion du changement de page
+    const handlePageChange = page => {setCurrentPage(page);};
 
+//Fonction du Search
+    const handleSearch = ({ currentTarget}) => {
+        setSearch(currentTargetvalue);
+        setCurrentPage(1);
+    }
+
+//filtrage de la recherche
+    const filteredCustomers = customers.filter(
+        c =>
+            c.firstName.toLowerCase().includes(search.toLowerCase()) ||
+            c.lastName.toLowerCase().includes(search.toLowerCase()) ||
+            c.email.toLowerCase().includes(search.toLowerCase()) ||
+            (c.company && c.company.toLowerCase().includes(search.toLowerCase()))
+    );
+
+// Récupération de la Pagination
+    const itemsPerPage = 10;
+    const paginatedCustomers = Pagination.getData(
+        filteredCustomers,
+        currentPage,
+        itemsPerPage
+    );
 
 
 /* RETURN ========================================================*/
     return (
         <>
             <Title>Clients</Title>
+            {/* search */}
+            <div className="form-group">
+                <input type="text" onChange={handleSearch} value={search} className="form-control"
+                       placeholder="rechercher"/>
+            </div>
             <table className="table table-hover">
                 <thead>
                 <tr>
@@ -77,7 +107,7 @@ const CustomerPage = props => {
                 </tr>
                 </thead>
                 <tbody>
-                {customers.map(customer => (
+                {paginatedCustomers.map(customer => (
                     <tr key={customer.id}>
                         <td className="align-middle"> {customer.id} </td>
                         <td className="iconesAk align-middle">
@@ -90,14 +120,14 @@ const CustomerPage = props => {
                         <td className="align-middle">{customer.email}</td>
                         <td className="align-middle">{customer.company}</td>
                         <td className="align-middle">
-                            <span className="badge badge-pill badge-primary adjustBadge">{customer.invoices.length}</span>
+                            <span
+                                className="badge badge-pill badge-primary adjustBadge">{customer.invoices.length}</span>
                         </td>
                         <td className="align-middle site-badge-count-4">
                             {customer.totalAmout.toLocaleString()} €
                         </td>
                         <td>
                             {/*=== DropDown===*/}
-
                             <Dropdown.Button
                                 onClick={handleButtonClick}
                                 overlay={
@@ -111,7 +141,7 @@ const CustomerPage = props => {
                                             Modifier
                                         </Menu.Item>
                                         <Menu.Item key="3"
-                                                   onClick={ () => handleDelete(customer.id) }
+                                                   onClick={() => handleDelete(customer.id)}
                                                    disabled={customer.invoices.length > 0}
                                                    icon={<UserOutlined/>}>
                                             Supprimer
@@ -125,14 +155,18 @@ const CustomerPage = props => {
                 ))}
                 </tbody>
             </table>
-            {/*PAGINATION PROBLEM*/}
-            <Pagination defaultCurrent={1}
+            {/*Pagination*/}
 
-            />
+            {/*Si il y a moins de 10 user pas d'affichage de page */}
+            {itemsPerPage < filteredCustomers.length && (
+                <Pagination currentPage={currentPage}
+                            itemsPerPage={itemsPerPage}
+                            length={filteredCustomers.length}
+                            onPageChanged={handlePageChange}/>)
+            }
         </>
     );
 };
-
 
 export default CustomerPage;
 
